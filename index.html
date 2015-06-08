@@ -5,6 +5,13 @@
         <title>Celiaca - Administration</title>
         <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon"/>
 
+        <link rel="stylesheet" type="text/css" href='./assets/fonts/openSans.css'>
+
+        <link rel="stylesheet" type="text/css" href="./assets/libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/general.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
+
         <script type="text/javascript" src="./assets/libs/angular/angular.min.js"></script>
         <script type="text/javascript" src="./assets/libs/angular/angular-route.min.js"></script>
 
@@ -13,6 +20,9 @@
         <!--<script type="text/javascript" src="./app/login/loginService.js"></script>-->
     </head>
     <body ng-app="celiacaApp">
+        <div class="header">
+            <a class="brand">Celiaca - CP</a>
+        </div>
         <div ng-view></div>
     </body>
 </html>

@@ -6,7 +6,6 @@ var celiacaApp = angular.module('celiacaApp', [
 
 celiacaApp.config(['$routeProvider',
   function($routeProvider) {
-    console.log('route');
     $routeProvider.
       when('/login', {
         templateUrl: 'app/login/login.html',

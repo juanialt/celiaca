@@ -3,7 +3,7 @@
 var login = angular.module('login', []);
 
 
-login.controller('loginCtrl', ['$scope', 'loginService', function($scope, loginService) {
+login.controller('loginCtrl', ['$scope', '$location', 'loginService', function($scope, $location, loginService) {
   console.log('here login!');
   $scope.page = 'LOGIN PAGE!';
 
@@ -12,7 +12,14 @@ login.controller('loginCtrl', ['$scope', 'loginService', function($scope, loginS
     console.log('user = ' + user);
     console.log('password = ' + password);
 
-    loginService.login(user, password);
+    loginService.login(user, password).then(
+      function() {
+        $location.path('/home');
+      },
+
+      function() {
+        alert('error!');
+      });
   };
 }]);
 

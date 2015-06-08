@@ -1,0 +1,17 @@
+body {
+    background-image: url('../img/body-bg.png');
+}
+
+.account-container {
+    display: block;
+
+    width: 380px;
+    margin: 60px auto 0 auto;
+
+    border: 1px solid #d5d5d5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    background: #f9f9f9;
+    box-shadow: 0 0 2px #dadada, inset 0 -3px 0 #e6e6e6;
+}
