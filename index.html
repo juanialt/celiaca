@@ -17,12 +17,18 @@
 
         <script type="text/javascript" src="./app/app.js"></script>
         <script type="text/javascript" src="./app/login/loginController.js"></script>
+        <script type="text/javascript" src="./app/navigation/navigation.js"></script>
         <!--<script type="text/javascript" src="./app/login/loginService.js"></script>-->
     </head>
     <body ng-app="celiacaApp">
         <div class="header">
-            <a class="brand">Celiaca - CP</a>
+            <a class="brand" href="#/home">Celiaca - CP</a>
         </div>
+
+
+        <navigation></navigation>
+
+
         <div ng-view></div>
     </body>
 </html>

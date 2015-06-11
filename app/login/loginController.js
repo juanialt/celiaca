@@ -14,7 +14,9 @@ login.controller('loginCtrl', ['$scope', '$location', 'loginService', function($
 
     loginService.login(user, password).then(
       function() {
+        console.log('success bro! welcome to the app');
         $location.path('/home');
+        //window.location('/home');
       },
 
       function() {
@@ -24,16 +26,22 @@ login.controller('loginCtrl', ['$scope', '$location', 'loginService', function($
 }]);
 
 
-login.factory('loginService', ['$http', function($http){
+login.factory('loginService', ['$http', '$q', function($http, $q){
 
   function login (user, password) {
+    var deferred = $q.defer();
+
     $http.post('./server/login/login.php', {user:user, password:password}).
     success(function(data, status, headers, config) {
       console.log('LOGIN SUCCESS');
+      deferred.resolve(data);
     }).
     error(function(data, status, headers, config) {
       console.log('LOGIN ERROR');
+      deferred.reject(data);
     });
+
+    return deferred.promise;
   }
 
   return {
