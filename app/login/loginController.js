@@ -3,7 +3,7 @@
 var login = angular.module('login', []);
 
 
-login.controller('loginCtrl', ['$scope', '$location', 'loginService', function($scope, $location, loginService) {
+login.controller('loginCtrl', ['$scope', '$location', 'loginService', 'store', function($scope, $location, loginService, store) {
   console.log('here login!');
   $scope.page = 'LOGIN PAGE!';
 
@@ -16,7 +16,6 @@ login.controller('loginCtrl', ['$scope', '$location', 'loginService', function($
       function() {
         console.log('success bro! welcome to the app');
         $location.path('/home');
-        //window.location('/home');
       },
 
       function() {

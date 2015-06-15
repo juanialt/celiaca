@@ -13,9 +13,6 @@ switch($_SERVER['REQUEST_METHOD']){
     $password = $params->get("password");
     if(isset($username, $password)) {
 
-      echo 'juani';
-      exit();
-
       if(login($username, $password, $mysqli) == true) {
           // Login success
         $response = array(

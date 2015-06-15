@@ -2,10 +2,16 @@
 
 var celiacaApp = angular.module('celiacaApp', [
   'ngRoute',
+  'angular-storage',
+  'angular-jwt',
   'login',
+  'home',
   'navigation']);
 
-celiacaApp.config(['$routeProvider', function($routeProvider) {
+celiacaApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+
+  $httpProvider.interceptors.push('sessionInjector');
+
   $routeProvider.
     when('/login', {
       templateUrl: 'app/login/login.html',
@@ -17,23 +23,7 @@ celiacaApp.config(['$routeProvider', function($routeProvider) {
     }).
     when('/home', {
       templateUrl: 'app/home/home.html',
-      controller: 'loginCtrl',
-      resolve: {
-        auth: ["$q", function($q) {
-          var userInfo = false;
-          var deferred = $q.defer();
-
-          if (userInfo) {
-            console.log('login OK');
-            deferred.resolve(true);
-          } else {
-            console.log('login ERROR');
-            deferred.reject(false);
-          }
-
-          return deferred.promise;
-        }]
-      }
+      controller: 'homeCtrl'
     }).
     when('/user', {
       templateUrl: 'app/user/user.html',
@@ -53,17 +43,19 @@ celiacaApp.config(['$routeProvider', function($routeProvider) {
 }]);
 
 
-celiacaApp.run(["$rootScope", "$location", function($rootScope, $location) {
-  $rootScope.$on("$routeChangeSuccess", function(userInfo) {
-    console.log('route change');
-    console.log(userInfo);
-  });
-
-  $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
-    console.log(eventObj);
-    if (eventObj === false) {
-      console.log('route change error!');
-      $location.path('/login');
+celiacaApp.factory('sessionInjector', function() {
+  var responseInterceptor = {
+    response: function(response) {
+      console.log('SERVER RESPONSE');
+      console.log(response);
+      return response;
+    },
+    responseError: function(rejection) {
+      console.log('SERVER REJECTION');
+      console.log(rejection);
+      return rejection;
     }
-  });
-}]);
+  };
+
+  return responseInterceptor;
+});
